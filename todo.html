@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ToDo List</title>
+</head>
+<style>
+.container{
+	margin: 4rem 4rem;
+	}	
+.addTaskContainer{
+margin: 4rem 0;
+}
+input[type="text"]{
+width: 50%;
+height: 2rem;
+outline: none;
+border: 4px solid tomato;
+font-size: 1.2rem;
+}
+.addtaskBtn{
+height: 37px;
+width: 50px;
+outline: none;
+border: none;
+border: 2px solid teal;
+background-color: white;
+}
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+}
+#taskList{
+margin: 2rem 0;
+}
+label{
+margin-left: 10rem;
+font-size: 1.2rem;
+
+}
+</style>
+<body>
+
+<div class="container">
+
+    <div class="addTaskContainer">
+        <input type="text" id="mytxt" placeholder="Type Task Here"/>
+        <button class="addtaskBtn" onclick="Task()">ADD</button>
+    </div>
+    <div class="buttonContainer">
+        <button onclick="deleteAll()" >Delete All</button>
+        <button onclick="deleteSelected()">Delete Selected</button> 
+    </div>
+
+    <div id="taskList">
+    </div>
+
+   
+
+</div>
+
+<script>
+
+    function deleteSelected(){
+        let selectedTasks = document.querySelectorAll('input[name=task]');
+        let checkedTask = [].filter.call( selectedTasks, function( el ) {
+            return el.checked
+        });
+        if(checkedTask.length > 0){
+            for(let i=0; i < checkedTask.length; i++){
+                let selectedTaskID = checkedTask[i].getAttribute('id');
+                document.querySelector('div#'+selectedTaskID).remove();
+            }
+        }
+    }
+   
+    function deleteAll(){
+        let allTask = document.querySelectorAll('input[name=task]');
+        if(allTask.length > 0){
+            for(let i=0; i < allTask.length; i++){
+                let taskID = allTask[i].getAttribute('id');
+                document.querySelector('div#'+taskID).remove();
+		}
+		
+    }
+}    
+        
+   function Task(){
+        let task = document.getElementById('mytxt').value;
+        if(task != ''){
+            var taskDiv = document.createElement('div');
+            taskDiv.id = task;
+            taskDiv.classList.add('taskContainer');
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = task;
+            checkbox.name = 'task';
+            checkbox.value = task;
+       
+            var label = document.createElement('label')
+            label.htmlFor = task;
+            label.appendChild(document.createTextNode(task));
+       
+            var br = document.createElement('br');
+       
+            var container = document.getElementById('taskList');
+            taskDiv.appendChild(checkbox);
+            taskDiv.appendChild(label);
+            taskDiv.appendChild(br);
+            container.appendChild(taskDiv);
+            document.getElementById('mytxt').value = '';
+        }
+       else
+       {
+           var store=localstorage.getItem('container');
+         document.getItem('store').innerHT
+
+           alert('give input please');
+       }
+    }
+</script>
+</body>
+
+</html>
